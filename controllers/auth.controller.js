@@ -33,7 +33,7 @@ async function login(req, res) {
         return;
     }
 
-    const passwordIsCorrect = await user.hasMatchingPassword(existinguser.password);
+    const passwordIsCorrect = await user.hasMatchingPassword(existingUser.password);
 
     if (!passwordIsCorrect) {
         res.redirect('/login')
