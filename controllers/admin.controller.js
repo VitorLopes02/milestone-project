@@ -57,11 +57,24 @@
 
     res.redirect('/admin/products');
   }
+
+  async function deleteProduct(req, res, next) {
+    let product;
+    try {
+      const product = await Product.findById(req.params.id);
+      await product.remove();
+    } catch (error) {
+      return next(error);
+    }
+
+    res.json({ message: 'Deleted product!' });
+  }
   
   module.exports = {
     getProducts: getProducts,
     getNewProduct: getNewProduct,
     createNewProduct: createNewProduct,
     getUpdateProduct: getUpdateProduct,
-    updateProduct: updateProduct
+    updateProduct: updateProduct,
+    deleteProduct: deleteProduct
   };
